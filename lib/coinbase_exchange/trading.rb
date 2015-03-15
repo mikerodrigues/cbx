@@ -68,6 +68,5 @@ class CoinbaseExchange
       end
       return string.sub(/^&/, '?')
     end
-
   end
 end

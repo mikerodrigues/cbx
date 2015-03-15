@@ -31,6 +31,5 @@ class CoinbaseExchange
     def close
       @ws.close
     end
-
   end
 end

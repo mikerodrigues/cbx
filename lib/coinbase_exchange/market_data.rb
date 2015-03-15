@@ -1,6 +1,5 @@
 class CoinbaseExchange
   module MarketData
-
     def products
       get('products')
     end
@@ -16,6 +15,5 @@ class CoinbaseExchange
     def trades(product_id='BTC-USD')
       get('products/' + product_id + '/trades')
     end
-
   end
 end
