@@ -1,12 +1,15 @@
 This is a fork of a project originally authored by Daniel Silver
 (https://github.com/dan-silver/cbx)
 
-The fork features convenience methods for all endpoint functionality and
-allows for unauthenticated access to Market Data and the WebSocket feed.
+This gem isn't officially endorsed, affiliated, or supported by Coinbase
+Exchange.
 
 # Ruby wrapper for the Coinbase Exchange API
-The library wraps the http request and message signing and provides convenience
-methods for all API functionality.
+
+The library wraps the http request and message signing and provides.
+
+The fork adds convenience methods to access all of the API's functionality, and
+allows for unauthenticated access to Market Data and the WebSocket feed.
 
 Create an account at https://exchange.coinbase.com to get started.
 
@@ -14,9 +17,14 @@ Create an account at https://exchange.coinbase.com to get started.
 
 ## Installation
 
-Include this in your gemfile:
+Include this in your gemfile for latest version from git:
 
 ```gem 'cbx', :git=> 'git://github.com/mikerodrigues/cbx.git'```
+
+or from Rubygems, usually not far behind git master:
+
+```gem 'cbx'```
+   
 
 ## Example
 ```ruby
