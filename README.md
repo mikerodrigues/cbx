@@ -4,8 +4,11 @@ This is a fork of a project originally authored by Daniel Silver
 The fork features convenience methods for all endpoint functionality and
 allows for unauthenticated access to Market Data and the WebSocket feed.
 
-# Coinbase Exchange Ruby Client
-The library wraps the http request and message signing.  Create an account at https://exchange.coinbase.com to get started.
+# Ruby wrapper for the Coinbase Exchange API
+The library wraps the http request and message signing and provides convenience
+methods for all API functionality.
+
+Create an account at https://exchange.coinbase.com to get started.
 
 ### NOTE - As a launch promo, there are [no Coinbase Exchange trading fees](http://blog.coinbase.com/post/109202118547/coinbase-launches-first-regulated-bitcoin-exchange) through the end of March.
 
