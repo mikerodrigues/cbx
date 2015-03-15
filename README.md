@@ -1,11 +1,14 @@
 This is a fork of a project originally authored by Daniel Silver
-(https://github.com/dan-silver/coinbase_exchange)
+(https://github.com/dan-silver/cbx)
 
 The fork features convenience methods for all endpoint functionality and
 allows for unauthenticated access to Market Data and the WebSocket feed.
 
-# Coinbase Exchange Ruby Client
-The library wraps the http request and message signing.  Create an account at https://exchange.coinbase.com to get started.
+# Ruby wrapper for the Coinbase Exchange API
+The library wraps the http request and message signing and provides convenience
+methods for all API functionality.
+
+Create an account at https://exchange.coinbase.com to get started.
 
 ### NOTE - As a launch promo, there are [no Coinbase Exchange trading fees](http://blog.coinbase.com/post/109202118547/coinbase-launches-first-regulated-bitcoin-exchange) through the end of March.
 
@@ -13,14 +16,14 @@ The library wraps the http request and message signing.  Create an account at ht
 
 Include this in your gemfile:
 
-```gem 'coinbase_exchange', :git=> 'git://github.com/mikerodrigues/coinbase_exchange.git'```
+```gem 'cbx', :git=> 'git://github.com/mikerodrigues/cbx.git'```
 
 ## Example
 ```ruby
-require "coinbase_exchange"
+require "cbx"
 
 # For unauthenticated access:
-cbe = CoinbaseExchange.new
+cbe = CBX.new
 
 # List products
 cbe.products
@@ -38,13 +41,11 @@ cbe.ticker("BTC-USD")
 cbe.trades('BTC-USD')
 => [{"time"=>"2015-03-15 04:43:48.7943+00", "trade_id"=>774500, "price"=>"285.44000000", "size"=>"0.01000000", "side"=>"sell"}, 
     {"time"=>"2015-03-15 04:42:54.432661+00", "trade_id"=>774499, "price"=>"285.47000000", "size"=>"0.05340000", "side"=>"sell"},
-    {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498, "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"},
-
+    {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498, "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"}]
 
 
 # For authenticated access:
-cbe = CoinbaseExchange.new API_KEY, API_SECRET, API_PASSPHRASE
-
+cbe = CBX.new API_KEY, API_SECRET, API_PASSPHRASE
 
 # List accounts
 cbe.accounts
@@ -52,8 +53,6 @@ cbe.accounts
 
 # List orders
 cbe.orders
-
-
 
 # List orders with pagination
 cbe.order({'limit'=>5, after=>1})
@@ -73,7 +72,7 @@ cbe.fills
 
 # Get a live feed from the websocket. You'll need to create a lambda to pass
 messages to as they are received:
-feed = CoinbaseExchange::Feed.new(->{|msg| puts msg.fetch('type')})
+feed = CBX::Feed.new(->{|msg| puts msg.fetch('type')})
 
 # Close the feed if needed
 feed.close
@@ -85,11 +84,12 @@ Block syntax is fully supported
 
 ```ruby
 
-cbe.get('accounts') do |response|
+cbe.accounts do |response|
   puts response
 end
 
 cbe.post('orders', {
+
     "size" => 1.01,
     "price" => 1.100,
     "side" => "buy",

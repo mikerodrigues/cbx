@@ -3,13 +3,14 @@ require "base64"
 require 'openssl'
 require 'json'
 require 'websocket-client-simple'
-require 'coinbase_exchange/feed'
-require 'coinbase_exchange/pagination'
-require 'coinbase_exchange/trading'
-require 'coinbase_exchange/market_data'
-require 'coinbase_exchange/coinbase_signature_maker'
+require 'cbx/feed'
+require 'cbx/pagination'
+require 'cbx/trading'
+require 'cbx/market_data'
+require 'cbx/coinbase_signature_maker'
+require 'cbx/version'
 
-class CoinbaseExchange
+class CBX
   include MarketData
   attr_reader :authenticated
 
@@ -20,7 +21,7 @@ class CoinbaseExchange
       @key = key
       @secret = secret
       @passphrase = passphrase
-      @coinbaseExchange = CoinbaseExchangeSignatureMaker.new(key, secret, passphrase)
+      @coinbaseExchange = CBXSignatureMaker.new(key, secret, passphrase)
       @authenticated = true
       extend Trading
     else 

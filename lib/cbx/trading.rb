@@ -1,6 +1,6 @@
-class CoinbaseExchange
+class CBX
   module Trading
-    include ::CoinbaseExchange::Pagination
+    include ::CBX::Pagination
     
     # Account methods
     #

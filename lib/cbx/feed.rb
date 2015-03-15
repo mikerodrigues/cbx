@@ -1,4 +1,4 @@
-class CoinbaseExchange
+class CBX
   class Feed
     API_URL = 'wss://ws-feed.exchange.coinbase.com'
     def initialize(on_message, on_close=nil, on_error=nil)

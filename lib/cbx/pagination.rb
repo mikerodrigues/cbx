@@ -1,4 +1,4 @@
-class CoinbaseExchange
+class CBX
   module Pagination
     private
 

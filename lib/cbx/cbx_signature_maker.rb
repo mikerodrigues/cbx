@@ -1,4 +1,4 @@
-class CoinbaseExchangeSignatureMaker
+class CBXSignatureMaker
   def initialize(key, secret, passphrase)
     @key = key
     @secret = secret
