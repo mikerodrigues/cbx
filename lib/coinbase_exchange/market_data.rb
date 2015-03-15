@@ -1,5 +1,7 @@
 class CoinbaseExchange
   module MarketData
+    include ::CoinbaseExchange::Pagination
+
     def products(&block)
       get('products', nil, &block)
     end

@@ -1,5 +1,7 @@
 class CoinbaseExchange
   module Trading
+    include ::CoinbaseExchange::Pagination
+    
     # Account methods
     #
     def accounts(account_id=nil, &block)
@@ -57,16 +59,6 @@ class CoinbaseExchange
     #
     def fills(pagination = {}, &block)
       get('fills' + paginate(pagination), nil, &block)
-    end
-
-    private
-
-    def paginate(hash)
-      string = ""
-      hash.keys.each do |key|
-        string << "&#{key}=#{hash.fetch(key)}"
-      end
-      return string.sub(/^&/, '?')
     end
   end
 end
