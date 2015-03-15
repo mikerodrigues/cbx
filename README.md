@@ -21,6 +21,33 @@ require "coinbase_exchange"
 # For unauthenticated access:
 cbe = CoinbaseExchange.new
 
+# List products
+cbe.products
+# => [{"id"=>"BTC-USD", "base_currency"=>"BTC", "quote_currency"=>"USD",
+"base_min_size"=>0.01, "base_max_size"=>10000, "quote_increment"=>0.01,
+"display_name"=>"BTC/USD"}]
+
+# Get product order book at level 1, 2, or 3, (Defaults to level: 1, product_id
+"BTC-USD'
+cbe.book
+#=> {"sequence"=>29349454, "bids"=>[["285.22000000", "0.34800000", 3]],
+"asks"=>[["285.33000000", "0.28930000", 4]]}
+
+# Product tickers (defaults to 'BTC-USD')
+cbe.ticker("BTC-USD")
+# => {"trade_id"=>125681, "price"=>"226.20000000", "size"=>"0.01570000", "time"=>"2015-02-08T04:46:17.352746Z"}
+
+# Product trades 9defaults to 'BTC-USD')
+cbe.trades('BTC-USD')
+# => [{"time"=>"2015-03-15 04:43:48.7943+00", "trade_id"=>774500,
+"price"=>"285.44000000", "size"=>"0.01000000", "side"=>"sell"},
+ {"time"=>"2015-03-15 04:42:54.432661+00", "trade_id"=>774499,
+ "price"=>"285.47000000", "size"=>"0.05340000", "side"=>"sell"},
+  {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498,
+  "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"},
+
+
+
 # For authenticated access:
 cbe = CoinbaseExchange.new API_KEY, API_SECRET, API_PASSPHRASE
 
@@ -45,16 +72,12 @@ cbe.place_order("0.02", "265.000", "sell")
 # Cancel an order by order_id
 cbe.cancel_order('488224434...')
 
-# Product tickers (defaults to 'BTC-USD')
-cbe.ticker("BTC-USD")
-# => {"trade_id"=>125681, "price"=>"226.20000000", "size"=>"0.01570000", "time"=>"2015-02-08T04:46:17.352746Z"}
-
 # Product fills
 cbe.fills
 
 # Get a live feed from the websocket. You'll need to create a lambda to pass
 messages to as they are received:
-feed = CoinbaseExchange::Feed.new(->{|msg| puts msg.fetch('type')})a
+feed = CoinbaseExchange::Feed.new(->{|msg| puts msg.fetch('type')})
 
 # Close the feed if needed
 feed.close
