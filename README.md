@@ -38,13 +38,11 @@ cbe.ticker("BTC-USD")
 cbe.trades('BTC-USD')
 => [{"time"=>"2015-03-15 04:43:48.7943+00", "trade_id"=>774500, "price"=>"285.44000000", "size"=>"0.01000000", "side"=>"sell"}, 
     {"time"=>"2015-03-15 04:42:54.432661+00", "trade_id"=>774499, "price"=>"285.47000000", "size"=>"0.05340000", "side"=>"sell"},
-    {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498, "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"},
-
+    {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498, "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"}]
 
 
 # For authenticated access:
 cbe = CoinbaseExchange.new API_KEY, API_SECRET, API_PASSPHRASE
-
 
 # List accounts
 cbe.accounts
@@ -52,8 +50,6 @@ cbe.accounts
 
 # List orders
 cbe.orders
-
-
 
 # List orders with pagination
 cbe.order({'limit'=>5, after=>1})
@@ -85,11 +81,12 @@ Block syntax is fully supported
 
 ```ruby
 
-cbe.get('accounts') do |response|
+cbe.accounts do |response|
   puts response
 end
 
 cbe.post('orders', {
+
     "size" => 1.01,
     "price" => 1.100,
     "side" => "buy",
