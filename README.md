@@ -27,11 +27,9 @@ cbe.products
 "base_min_size"=>0.01, "base_max_size"=>10000, "quote_increment"=>0.01,
 "display_name"=>"BTC/USD"}]
 
-# Get product order book at level 1, 2, or 3, (Defaults to level: 1, product_id
-"BTC-USD'
+# Get product order book at level 1, 2, or 3, (Defaults to level: 1, product_id "BTC-USD")
 cbe.book
-#=> {"sequence"=>29349454, "bids"=>[["285.22000000", "0.34800000", 3]],
-"asks"=>[["285.33000000", "0.28930000", 4]]}
+#=> {"sequence"=>29349454, "bids"=>[["285.22000000", "0.34800000", 3]], "asks"=>[["285.33000000", "0.28930000", 4]]}
 
 # Product tickers (defaults to 'BTC-USD')
 cbe.ticker("BTC-USD")
@@ -39,12 +37,9 @@ cbe.ticker("BTC-USD")
 
 # Product trades 9defaults to 'BTC-USD')
 cbe.trades('BTC-USD')
-# => [{"time"=>"2015-03-15 04:43:48.7943+00", "trade_id"=>774500,
-"price"=>"285.44000000", "size"=>"0.01000000", "side"=>"sell"},
- {"time"=>"2015-03-15 04:42:54.432661+00", "trade_id"=>774499,
- "price"=>"285.47000000", "size"=>"0.05340000", "side"=>"sell"},
-  {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498,
-  "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"},
+# => [{"time"=>"2015-03-15 04:43:48.7943+00", "trade_id"=>774500, "price"=>"285.44000000", "size"=>"0.01000000", "side"=>"sell"}, 
+      {"time"=>"2015-03-15 04:42:54.432661+00", "trade_id"=>774499, "price"=>"285.47000000", "size"=>"0.05340000", "side"=>"sell"},
+      {"time"=>"2015-03-15 04:42:54.432306+00", "trade_id"=>774498, "price"=>"285.45000000", "size"=>"0.09100000", "side"=>"sell"},
 
 
 
