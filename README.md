@@ -1,5 +1,5 @@
 This is a fork of a project originally authored by Daniel Silver
-(https://github.com/dan-silver/coinbase_exchange)
+(https://github.com/dan-silver/cbx)
 
 The fork features convenience methods for all endpoint functionality and
 allows for unauthenticated access to Market Data and the WebSocket feed.
@@ -13,14 +13,14 @@ The library wraps the http request and message signing.  Create an account at ht
 
 Include this in your gemfile:
 
-```gem 'coinbase_exchange', :git=> 'git://github.com/mikerodrigues/coinbase_exchange.git'```
+```gem 'cbx', :git=> 'git://github.com/mikerodrigues/cbx.git'```
 
 ## Example
 ```ruby
-require "coinbase_exchange"
+require "cbx"
 
 # For unauthenticated access:
-cbe = CoinbaseExchange.new
+cbe = CBX.new
 
 # List products
 cbe.products
@@ -42,7 +42,7 @@ cbe.trades('BTC-USD')
 
 
 # For authenticated access:
-cbe = CoinbaseExchange.new API_KEY, API_SECRET, API_PASSPHRASE
+cbe = CBX.new API_KEY, API_SECRET, API_PASSPHRASE
 
 # List accounts
 cbe.accounts
@@ -69,7 +69,7 @@ cbe.fills
 
 # Get a live feed from the websocket. You'll need to create a lambda to pass
 messages to as they are received:
-feed = CoinbaseExchange::Feed.new(->{|msg| puts msg.fetch('type')})
+feed = CBX::Feed.new(->{|msg| puts msg.fetch('type')})
 
 # Close the feed if needed
 feed.close

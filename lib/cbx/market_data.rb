@@ -1,6 +1,6 @@
-class CoinbaseExchange
+class CBX
   module MarketData
-    include ::CoinbaseExchange::Pagination
+    include ::CBX::Pagination
 
     def products(&block)
       get('products', nil, &block)

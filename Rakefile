@@ -1,10 +1,11 @@
 require 'rake/testtask'
 require 'bundler'
+require_relative './lib/cbx/version.rb'
 
 task :build do
   begin
     puts 'building gem...'
-    `gem build coinbase_exchange.gemspec`
+    `gem build cbx.gemspec`
   rescue
     puts 'build failed.'
   end
@@ -13,7 +14,7 @@ end
 task :install do
   begin
     puts 'installing gem...'
-    `gem install coinbase_exchange-0.0.3.gem`
+    `gem install cbx-#{CBX::VERSION}.gem`
   rescue
     puts 'install failed.'
   end
