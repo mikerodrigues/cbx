@@ -1,5 +1,5 @@
 This is a fork of a project originally authored by Daniel Silver
-(https://github.com/dan-silver/cbx)
+(https://github.com/dan-silver/coinbase_exchange)
 
 This gem isn't officially endorsed, affiliated, or supported by Coinbase
 Exchange.
