@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'cbx'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2015-03-16'
   s.summary     = "Ruby wrapper for the Coinbase Exchange API"
   s.description = "A complete interface to the Coinbase Exchange trading API."
