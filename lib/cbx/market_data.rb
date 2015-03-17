@@ -23,7 +23,7 @@ class CBX
     end
 
     def stats(&block)
-      get('products/' + product_id + '/states', nil, &block)
+      get('products/' + product_id + '/stats', nil, &block)
     end
 
     def currencies(&block)
