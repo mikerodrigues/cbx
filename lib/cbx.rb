@@ -7,7 +7,7 @@ require 'cbx/feed'
 require 'cbx/pagination'
 require 'cbx/trading'
 require 'cbx/market_data'
-require 'cbx/coinbase_signature_maker'
+require 'cbx/cbx_signature_maker'
 require 'cbx/version'
 
 class CBX
