@@ -12,7 +12,6 @@ require 'cbx/version'
 
 class CBX
   include MarketData
-  attr_reader :authenticated
 
   API_URL = 'https://api.exchange.coinbase.com/'
 
@@ -21,7 +20,7 @@ class CBX
       @key = key
       @secret = secret
       @passphrase = passphrase
-      @coinbaseExchange = CBXSignatureMaker.new(key, secret, passphrase)
+      @cbx_signature_maker = CBXSignatureMaker.new(key, secret, passphrase)
       @authenticated = true
       extend Trading
     else 
@@ -29,11 +28,15 @@ class CBX
     end
   end
 
+  def authenticated?
+    @authenticated
+  end
+
   def request(method, uri, json=nil)
     params = json.to_json if json
     if authenticated
       headers = { 
-        'CB-ACCESS-SIGN'=> @coinbaseExchange.signature('/'+uri, params, nil, method),
+        'CB-ACCESS-SIGN'=> @cbx_signature_maker.signature('/'+uri, params, nil, method),
         'CB-ACCESS-TIMESTAMP'=> Time.now.to_i,
         'CB-ACCESS-KEY'=> @key,
         'CB-ACCESS-PASSPHRASE'=> @passphrase,
