@@ -38,7 +38,7 @@ cbe.products
 => [{"id"=>"BTC-USD", "base_currency"=>"BTC", "quote_currency"=>"USD", "base_min_size"=>0.01, "base_max_size"=>10000, "quote_increment"=>0.01, "display_name"=>"BTC/USD"}]
 
 # Get product order book at level 1, 2, or 3, (Defaults to level: 1, product_id "BTC-USD")
-cbe.book(1, 'BTC-USD')
+cbe.orderbook(1, 'BTC-USD')
 => {"sequence"=>29349454, "bids"=>[["285.22000000", "0.34800000", 3]], "asks"=>[["285.33000000", "0.28930000", 4]]}
 
 # Product tickers (defaults to 'BTC-USD')
