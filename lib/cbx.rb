@@ -7,7 +7,6 @@ require 'cbx/feed'
 require 'cbx/pagination'
 require 'cbx/trading'
 require 'cbx/market_data'
-require 'cbx/cbx_signature_maker'
 require 'cbx/version'
 
 class CBX
@@ -20,7 +19,6 @@ class CBX
       @key = key
       @secret = secret
       @passphrase = passphrase
-      @cbx_signature_maker = CBXSignatureMaker.new(key, secret, passphrase)
       @authenticated = true
       extend Trading
     else 
@@ -32,11 +30,22 @@ class CBX
     @authenticated
   end
 
+  def sign(request_url='', body='', timestamp=nil, method='GET')
+    body = body.to_json if body.is_a?(Hash)
+    timestamp = Time.now.to_i if !timestamp
+
+    what = "#{timestamp}#{method.upcase}#{request_url}#{body}";
+    # create a sha256 hmac with the secret
+    secret = Base64.decode64(@secret)
+    hash  = OpenSSL::HMAC.digest('sha256', secret, what)
+    Base64.strict_encode64(hash)
+  end
+
   def request(method, uri, json=nil)
     params = json.to_json if json
-    if authenticated
+    if authenticated?
       headers = { 
-        'CB-ACCESS-SIGN'=> @cbx_signature_maker.signature('/'+uri, params, nil, method),
+        'CB-ACCESS-SIGN'=> sign('/'+uri, params, nil, method),
         'CB-ACCESS-TIMESTAMP'=> Time.now.to_i,
         'CB-ACCESS-KEY'=> @key,
         'CB-ACCESS-PASSPHRASE'=> @passphrase,
