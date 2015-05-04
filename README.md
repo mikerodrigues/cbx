@@ -13,13 +13,11 @@ allows for unauthenticated access to Market Data and the WebSocket feed.
 
 Create an account at https://exchange.coinbase.com to get started.
 
-### NOTE - As a launch promo, there are [no Coinbase Exchange trading fees](http://blog.coinbase.com/post/109202118547/coinbase-launches-first-regulated-bitcoin-exchange) through the end of March.
-
 ## Installation
 
 Include this in your gemfile for latest version from git:
 
-```gem 'cbx', :git=> 'git://github.com/mikerodrigues/cbx.git'```
+```gem 'cbx', :git => 'git://github.com/mikerodrigues/cbx.git'```
 
 or from Rubygems, usually not far behind git master:
 
