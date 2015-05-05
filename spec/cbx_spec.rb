@@ -1,5 +1,4 @@
 require_relative './spec_helper'
 
-describe "CBX" do
-  describe ""
+describe 'CBX' do
 end
