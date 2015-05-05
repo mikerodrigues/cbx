@@ -1,4 +1,7 @@
 class CBX
+  # Provides an interface to the Market Data section of the Coinbase Exchange
+  # API.
+  #
   module MarketData
     include ::CBX::Pagination
 
@@ -6,19 +9,19 @@ class CBX
       get('products', nil, &block)
     end
 
-    def orderbook(level='1', product_id='BTC-USD', &block)
+    def orderbook(level = '1', product_id = 'BTC-USD', &block)
       get('products/' + product_id + '/book?level=' + String(level), nil, &block)
     end
 
-    def ticker(product_id='BTC-USD', &block)
+    def ticker(product_id = 'BTC-USD', &block)
       get('products/' + product_id + '/ticker', nil, &block)
     end
 
-    def trades(product_id='BTC-USD', &block)
+    def trades(product_id = 'BTC-USD', &block)
       get('products/' + product_id + '/trades', nil, &block)
     end
 
-    def candles(level='1', product_id='BTC-USD', &block)
+    def candles(product_id = 'BTC-USD', &block)
       get('products/' + product_id + '/candles', nil, &block)
     end
 

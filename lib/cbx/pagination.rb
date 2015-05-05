@@ -1,13 +1,14 @@
 class CBX
+  # Handles constructing the pagination portion of a URL.
+  #
   module Pagination
     private
 
     def paginate(hash)
-      string = ""
-      hash.keys.each do |key|
-        string << "&#{key}=#{hash.fetch(key)}"
+      hash.keys.each.with_index.reduce('?') do |string, (key, index)|
+        index > 0 ? string << '&' : ''
+        string << "#{key}=#{hash.fetch(key)}"
       end
-      return string.sub(/^&/, '?')
     end
   end
 end

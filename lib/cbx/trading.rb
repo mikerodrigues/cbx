@@ -1,11 +1,12 @@
 class CBX
+  # Provides an interface to the Trading section of the Coinbase Exchange API.
+  #
   module Trading
     include ::CBX::Pagination
-    
     # Account methods
     #
-    def accounts(account_id=nil, &block)
-      if account_id.nil? then
+    def accounts(account_id = nil, &block)
+      if account_id.nil?
         get('accounts', nil, &block)
       else
         get('accounts/' + account_id.to_s, nil, &block)
@@ -26,8 +27,8 @@ class CBX
       get('orders' + paginate(pagination), nil, &block)
     end
 
-    def order(order_id=nil, &block)
-      if order_id.nil? then
+    def order(order_id = nil, &block)
+      if order_id.nil?
         get('orders', nil, &block)
       else
         get('orders/' + order_id.to_s, nil, &block)
@@ -38,20 +39,35 @@ class CBX
       delete('orders/' + order_id.to_s, nil, &block)
     end
 
-    def place_order(size, price, side, product_id='BTC-USD', &block)
-      order = { 'size' => size, 'price' => price, 'side' => side, 'product_id' => product_id}
+    def place_order(size, price, side, product_id = 'BTC-USD', &block)
+      order = { 
+        'size' => size,
+        'price' => price,
+        'side' => side,
+        'product_id' => product_id
+      }
       post('orders', order, &block)
     end
 
-    # Transfer funds methods
+    # Deposit funds into your Exchange account from a Coinbase wallet.
     #
     def deposit(amount, coinbase_account_id, &block)
-      order = { 'type' => 'deposit', 'amount' => amount, 'coinbase_account_id' => coinbase_account_id }
+      order = { 
+        'type' => 'deposit',
+        'amount' => amount,
+        'coinbase_account_id' => coinbase_account_id
+      }
       post('orders', order, &block)
     end
 
+    # Withdraw funds to your Coinbase wallet.
+    #
     def withdraw(amount, coinbase_account_id, &block)
-      order = { 'type' => 'withdraw', 'amount' => amount, 'coinbase_account_id' => coinbase_account_id }
+      order = {
+        'type' => 'withdraw',
+        'amount' => amount,
+        'coinbase_account_id' => coinbase_account_id
+      }
       post('orders', order, &block)
     end
 
@@ -59,6 +75,23 @@ class CBX
     #
     def fills(pagination = {}, &block)
       get('fills' + paginate(pagination), nil, &block)
+    end
+
+    # Create a report
+    #
+    def create_report(start_date = nil, end_date = nil, type = 'fill' &block)
+      params = {
+        'type' => type,
+        'start_date' => start_date,
+        'end_date' => end_date
+      }
+      post('reports', params, &block)
+    end
+
+    # Get info about a report
+    #
+    def report_info(report_id, &block)
+      get('reports/' + report_id)
     end
   end
 end
