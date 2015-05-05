@@ -49,7 +49,7 @@ class CBX
       post('orders', order, &block)
     end
 
-    # Transfer funds methods
+    # Deposit funds into your Exchange account from a Coinbase wallet.
     #
     def deposit(amount, coinbase_account_id, &block)
       order = { 
@@ -60,6 +60,8 @@ class CBX
       post('orders', order, &block)
     end
 
+    # Withdraw funds to your Coinbase wallet.
+    #
     def withdraw(amount, coinbase_account_id, &block)
       order = {
         'type' => 'withdraw',
@@ -73,6 +75,23 @@ class CBX
     #
     def fills(pagination = {}, &block)
       get('fills' + paginate(pagination), nil, &block)
+    end
+
+    # Create a report
+    #
+    def create_report(start_date = nil, end_date = nil, type = 'fill' &block)
+      params = {
+        'type' => type,
+        'start_date' => start_date,
+        'end_date' => end_date
+      }
+      post('reports', params, &block)
+    end
+
+    # Get info about a report
+    #
+    def report_info(report_id, &block)
+      get('reports/' + report_id)
     end
   end
 end
