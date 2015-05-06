@@ -1,3 +1,6 @@
+## 1.0.0 is coming soon, it will have tests and support the new API features.
+## Checkout the development branch if you can't wait for an official release.
+
 This is a fork of a project originally authored by Daniel Silver
 (https://github.com/dan-silver/coinbase_exchange)
 
