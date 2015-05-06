@@ -25,6 +25,8 @@ or from Rubygems, usually not far behind git master:
 
 ```gem 'cbx'```
 
+## Usage
+
 You can mentally map the API to the wrapper by remembering a few things:
 
 1. Methods share the same name as youngest component of the API endpoint url.
