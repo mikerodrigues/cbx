@@ -30,8 +30,8 @@ or from Rubygems, usually not far behind git master:
 You can mentally map the API to the wrapper by remembering a few things:
 
 1. Methods share the same name as youngest component of the API endpoint url.
---* Example: The orderbook can be retrieved with the method `#book`.
---* Example: The products list can be retrieved with the method `#products`.
+  * Example: The orderbook can be retrieved with the method `#book`.
+  * Example: The products list can be retrieved with the method `#products`.
 
 2. Methods of all endpoints that have params or are paginated take a hash of params:
 ```ruby
@@ -40,13 +40,15 @@ You can mentally map the API to the wrapper by remembering a few things:
 ```ruby
    @cbx.trades({ after: 2, limit: 20 })
 ``` 
-
-3. Endpoints with non-parameter varibles in their URLs, like `<product-id>` are
+3. Endpoints with non-parameter variables in their URLs, like `/products/<product-id>/ticker` are
    passed as arguments to the endpoint method. If the method accepts params they
    must be passed first, pass an empty hash if you have to:
 ```ruby
    @cbx.book({}, 'BTC-GBP'})
-```  
+``` 
+
+4. All of the responses are parsed JSON objects. You can use the Coinbase
+   Exchange API documentation to see the structure of all the various responses. 
 
 ## Example
 ```ruby
