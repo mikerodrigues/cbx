@@ -9,7 +9,9 @@ Exchange.
 The library wraps the http request and message signing and provides.
 
 The fork adds convenience methods to access all of the API's functionality, and
-allows for unauthenticated access to Market Data and the WebSocket feed.
+allows for unauthenticated access to Market Data and the WebSocket feed. All of
+the responses are parsed JSON objects so use the API documentation to see the
+structure of each response, I won't show everything here.
 
 Create an account at https://exchange.coinbase.com to get started.
 
@@ -22,7 +24,27 @@ Include this in your gemfile for latest version from git:
 or from Rubygems, usually not far behind git master:
 
 ```gem 'cbx'```
-   
+
+You can mentally map the API to the wrapper by remembering a few things:
+
+1. Methods share the same name as youngest component of the API endpoint url.
+--* Example: The orderbook can be retrieved with the method `#book`.
+--* Example: The products list can be retrieved with the method `#products`.
+
+2. Methods of all endpoints that have params or are paginated take a hash of params:
+```ruby
+   @cbx.trades({ start: Time.now - 600, end: Time.now, granularity: 50 })
+```
+```ruby
+   @cbx.trades({ after: 2, limit: 20 })
+``` 
+
+3. Endpoints with non-parameter varibles in their URLs, like `<product-id>` are
+   passed as arguments to the endpoint method. If the method accepts params they
+   must be passed first, pass an empty hash if you have to:
+```ruby
+   @cbx.book({}, 'BTC-GBP'})
+```  
 
 ## Example
 ```ruby
@@ -42,20 +64,26 @@ cbe.products
      "display_name"=>"BTC/USD"}]
 
 # Get product order book at level 1, 2, or 3, (Defaults to level: 1, product_id "BTC-USD")
-cbe.orderbook(1, 'BTC-USD')
+cbe.book
 => {"sequence"=>29349454,
     "bids"=>[["285.22000000","0.34800000", 3]], 
     "asks"=>[["285.33000000", "0.28930000", 4]]}
 
+# Level 2
+cbe.book({ level: 2})
+
+# Level 3, bids/asks are unaggregated, see the API docs for more info
+cbe.book({ level: 3})
+
 # Product tickers (defaults to 'BTC-USD')
-cbe.ticker("BTC-USD")
+cbe.ticker('BTC-USD')
 => {"trade_id"=>125681,
     "price"=>"226.20000000",
     "size"=>"0.01570000", 
     "time"=>"2015-02-08T04:46:17.352746Z"}
 
 # Product trades (defaults to 'BTC-USD')
-cbe.trades('BTC-USD')
+cbe.trades({ start: Time.now - 600, end: Time.now, granularity: 60}, 'BTC-USD')
 => [{"time"=>"2015-03-15 04:43:48.7943+00"
      "trade_id"=>774500
      "price"=>"285.44000000"

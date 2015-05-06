@@ -16,6 +16,7 @@ class CBX
   include MarketData
 
   API_URL = 'https://api.exchange.coinbase.com/'
+  SANDBOX_API_URL = 'https://api-public.sandbox.exchange.coinbase.com/'
 
   def initialize(key = nil, secret = nil, passphrase = nil)
     if key && secret && passphrase

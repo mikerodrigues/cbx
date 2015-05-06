@@ -9,23 +9,23 @@ class CBX
       get('products', nil, &block)
     end
 
-    def orderbook(level = '1', product_id = 'BTC-USD', &block)
-      get('products/' + product_id + '/book?level=' + String(level), nil, &block)
+    def book(params = {}, product_id = 'BTC-USD', &block)
+      get('products/' + product_id + '/book' + paginate(params), nil, &block)
     end
 
     def ticker(product_id = 'BTC-USD', &block)
       get('products/' + product_id + '/ticker', nil, &block)
     end
 
-    def trades(product_id = 'BTC-USD', &block)
-      get('products/' + product_id + '/trades', nil, &block)
+    def trades(params = {}, product_id = 'BTC-USD', &block)
+      get('products/' + product_id + '/trades' + paginate(params), nil, &block)
     end
 
-    def candles(product_id = 'BTC-USD', &block)
-      get('products/' + product_id + '/candles', nil, &block)
+    def candles(params = {}, product_id = 'BTC-USD', &block)
+      get('products/' + product_id + '/candles' + paginate(params), nil, &block)
     end
 
-    def stats(&block)
+    def stats( product_id = 'BTC-USD', &block)
       get('products/' + product_id + '/stats', nil, &block)
     end
 
