@@ -39,7 +39,7 @@ class CBX
       delete('orders/' + order_id.to_s, nil, &block)
     end
 
-    def place_order(size, price, side, product_id = 'BTC-USD', &block)
+    def place_order(size, price, side, product_id = CBX::DEFAULT_PRODUCT_ID, &block)
       order = { 
         'size' => size,
         'price' => price,

@@ -4,7 +4,7 @@ class CBX
   class Feed
     API_URL = 'wss://ws-feed.exchange.coinbase.com'
     SANDBOX_API_URL = 'wss://ws-feed-public.sandbox.exchange.coinbase.com'
-    SUBSCRIPTION_REQUEST = { 'type' => 'subscribe', 'product_id' => 'BTC-USD' }
+    SUBSCRIPTION_REQUEST = { 'type' => 'subscribe', 'product_id' => CBX::DEFAULT_PRODUCT_ID }
     def initialize(on_message, on_close = nil, on_error = nil)
       ws = WebSocket::Client::Simple.connect API_URL
       @ws = ws

@@ -3,20 +3,20 @@ require 'base64'
 require 'openssl'
 require 'json'
 require 'websocket-client-simple'
-require 'cbx/feed'
-require 'cbx/pagination'
-require 'cbx/trading'
-require 'cbx/market_data'
-require 'cbx/version'
 
 # A CBX object exposes all of the functionality of the API through methods that
 # return JSON objects.
 #
 class CBX
-  include MarketData
-
+  DEFAULT_PRODUCT_ID = 'BTC-USD'
   API_URL = 'https://api.exchange.coinbase.com/'
   SANDBOX_API_URL = 'https://api-public.sandbox.exchange.coinbase.com/'
+  require 'cbx/feed'
+  require 'cbx/pagination'
+  require 'cbx/trading'
+  require 'cbx/market_data'
+  require 'cbx/version'
+  include MarketData
 
   def initialize(key = nil, secret = nil, passphrase = nil)
     if key && secret && passphrase
