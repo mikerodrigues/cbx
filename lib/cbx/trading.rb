@@ -91,7 +91,7 @@ class CBX
     # Get info about a report
     #
     def report_info(report_id, &block)
-      get('reports/' + report_id)
+      get('reports/' + report_id, &block)
     end
   end
 end

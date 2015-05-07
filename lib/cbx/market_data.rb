@@ -25,7 +25,7 @@ class CBX
       get('products/' + product_id + '/candles' + paginate(params), nil, &block)
     end
 
-    def stats( product_id = CBX::DEFAULT_PRODUCT_ID, &block)
+    def stats(product_id = CBX::DEFAULT_PRODUCT_ID, &block)
       get('products/' + product_id + '/stats', nil, &block)
     end
 
