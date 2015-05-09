@@ -5,8 +5,12 @@ class CBX
   module MarketData
     include ::CBX::Pagination
 
-    def products(&block)
-      get('products', nil, &block)
+    def products(product_id = nil, &block)
+      if product_id
+        get('products/' + product_id, nil, &block)
+      else
+        get('products', nil, &block)
+      end
     end
 
     def book(params = {}, product_id = CBX::DEFAULT_PRODUCT_ID, &block)

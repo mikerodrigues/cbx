@@ -79,7 +79,7 @@ class CBX
 
     # Create a report
     #
-    def create_report(start_date = nil, end_date = nil, type = 'fill' &block)
+    def create_report(start_date = nil, end_date = nil, type = 'fill', &block)
       params = {
         'type' => type,
         'start_date' => start_date,

@@ -3,6 +3,9 @@ require 'base64'
 require 'openssl'
 require 'json'
 require 'websocket-client-simple'
+require 'money'
+require 'monetize'
+require 'bigdecimal'
 
 # A CBX object exposes all of the functionality of the API through methods that
 # return JSON objects.
@@ -11,6 +14,9 @@ class CBX
   DEFAULT_PRODUCT_ID = 'BTC-USD'
   API_URL = 'https://api.exchange.coinbase.com/'
   SANDBOX_API_URL = 'https://api-public.sandbox.exchange.coinbase.com/'
+  require 'cbx/account'
+  require 'cbx/error'
+  require 'cbx/order'
   require 'cbx/feed'
   require 'cbx/pagination'
   require 'cbx/trading'

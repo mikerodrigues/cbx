@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
   s.metadata = { 'parent_project_homepage' => 'https://github.com/dan-silver/coinbase_exchange' }
   s.add_runtime_dependency 'unirest', '~> 1.1', '>= 1.1.2'
   s.add_runtime_dependency 'websocket-client-simple'
+  s.add_runtime_dependency 'monetize'
+  s.add_runtime_dependency 'money'
 end
