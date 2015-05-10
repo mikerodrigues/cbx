@@ -3,7 +3,7 @@ class CBX
   # API.
   #
   module MarketData
-    include ::CBX::Pagination
+    include ::CBX::QueryParameters
 
     def products(product_id = nil, &block)
       if product_id
@@ -14,7 +14,7 @@ class CBX
     end
 
     def book(params = {}, product_id = CBX::DEFAULT_PRODUCT_ID, &block)
-      get('products/' + product_id + '/book' + paginate(params), nil, &block)
+      get('products/' + product_id + '/book' + linkify(params), nil, &block)
     end
 
     def ticker(product_id = CBX::DEFAULT_PRODUCT_ID, &block)
@@ -22,11 +22,11 @@ class CBX
     end
 
     def trades(params = {}, product_id = CBX::DEFAULT_PRODUCT_ID, &block)
-      get('products/' + product_id + '/trades' + paginate(params), nil, &block)
+      get('products/' + product_id + '/trades' + linkify(params), nil, &block)
     end
 
     def candles(params = {}, product_id = CBX::DEFAULT_PRODUCT_ID, &block)
-      get('products/' + product_id + '/candles' + paginate(params), nil, &block)
+      get('products/' + product_id + '/candles' + linkify(params), nil, &block)
     end
 
     def stats(product_id = CBX::DEFAULT_PRODUCT_ID, &block)

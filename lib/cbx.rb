@@ -3,9 +3,6 @@ require 'base64'
 require 'openssl'
 require 'json'
 require 'websocket-client-simple'
-require 'money'
-require 'monetize'
-require 'bigdecimal'
 
 # A CBX object exposes all of the functionality of the API through methods that
 # return JSON objects.
@@ -14,11 +11,9 @@ class CBX
   DEFAULT_PRODUCT_ID = 'BTC-USD'
   API_URL = 'https://api.exchange.coinbase.com/'
   SANDBOX_API_URL = 'https://api-public.sandbox.exchange.coinbase.com/'
-  require 'cbx/account'
-  require 'cbx/error'
-  require 'cbx/order'
+  require 'cbx/response'
   require 'cbx/feed'
-  require 'cbx/pagination'
+  require 'cbx/query_parameters'
   require 'cbx/trading'
   require 'cbx/market_data'
   require 'cbx/version'
@@ -72,8 +67,9 @@ class CBX
     elsif method == :delete
       r = Unirest.delete(API_URL + uri, headers: headers, parameters: params)
     end
-    yield r.body if block_given?
-    r.body
+    response = Response.new r
+    yield response if block_given?
+    response
   end
 
   def get(uri, json = nil, &block)
