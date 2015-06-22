@@ -36,12 +36,14 @@ describe 'MarketData' do
   end
 
   describe '#candles' do
-    skip 'coinbase is having problems with this endpoint'
+
     it 'gets list of historical trades' do
+      skip 'coinbase is having problems with this endpoint'
       expect(cbe.candles.code).to eq(200)
     end
 
     it 'accepts :start, :end, and :granularity params' do
+      skip 'coinbase is having problems with this endpoint'
       start = Time.now
       _end = Time.now + 120
       granularity = 20
