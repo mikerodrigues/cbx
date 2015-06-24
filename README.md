@@ -1,5 +1,4 @@
-## 1.0.0 is coming soon, it will have tests and support the new API features.
-## Checkout the development branch if you can't wait for an official release.
+## Coinbase released an official Exchange API client. Unless they end up completely abandoning it, I'll likely spend more time using it than this library.
 
 This is a fork of a project originally authored by Daniel Silver
 (https://github.com/dan-silver/coinbase_exchange)
