@@ -67,8 +67,7 @@ class CBX
     elsif method == :delete
       r = Unirest.delete(API_URL + uri, headers: headers, parameters: params)
     end
-    response = Response.new r
-    yield response if block_given?
+    yield r if block_given?
     response
   end
 
