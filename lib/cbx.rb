@@ -11,7 +11,6 @@ class CBX
   DEFAULT_PRODUCT_ID = 'BTC-USD'
   API_URL = 'https://api.exchange.coinbase.com/'
   SANDBOX_API_URL = 'https://api-public.sandbox.exchange.coinbase.com/'
-  require 'cbx/response'
   require 'cbx/feed'
   require 'cbx/query_parameters'
   require 'cbx/trading'
@@ -67,8 +66,8 @@ class CBX
     elsif method == :delete
       r = Unirest.delete(API_URL + uri, headers: headers, parameters: params)
     end
-    yield r if block_given?
-    response
+    yield r.body if block_given?
+    r.body
   end
 
   def get(uri, json = nil, &block)
