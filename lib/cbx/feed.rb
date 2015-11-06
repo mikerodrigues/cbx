@@ -9,7 +9,7 @@ class CBX
       ws = WebSocket::Client::Simple.connect API_URL
       @ws = ws
       ws.on :message do |event|
-        msg = JSON.parse event.data
+        msg = Oj.load event.data
         on_message.call(msg)
       end
 

@@ -1,7 +1,7 @@
-require 'unirest'
+require 'rest-client'
 require 'base64'
 require 'openssl'
-require 'json'
+require 'oj'
 require 'websocket-client-simple'
 
 # A CBX object exposes all of the functionality of the API through methods that
@@ -15,8 +15,11 @@ class CBX
   require 'cbx/query_parameters'
   require 'cbx/trading'
   require 'cbx/market_data'
+  require 'cbx/candle'
   require 'cbx/version'
   include MarketData
+
+  Oj.default_options = {bigdecimal_as_decimal: true, bigdecimal_load: true}
 
   def initialize(key = nil, secret = nil, passphrase = nil)
     if key && secret && passphrase
@@ -48,7 +51,7 @@ class CBX
   def request(method, uri, json = nil)
     params = json.to_json if json
     if authenticated?
-      headers = { 
+      headers = {
         'CB-ACCESS-SIGN' => sign('/' + uri, params, nil, method),
         'CB-ACCESS-TIMESTAMP' => Time.now.to_i,
         'CB-ACCESS-KEY' => @key,
@@ -60,12 +63,13 @@ class CBX
     end
 
     if method == :get
-      r = Unirest.get(API_URL + uri, headers: headers)
+      r = RestClient.get(API_URL + uri, headers)
     elsif method == :post
-      r = Unirest.post(API_URL + uri, headers: headers, parameters: params)
+      r = RestClient.post(API_URL + uri, params, headers)
     elsif method == :delete
-      r = Unirest.delete(API_URL + uri, headers: headers, parameters: params)
+      r = RestClient.execute(method: :delete, url: API_URL + uri, payload: params, headers: headers)
     end
+
     yield r.body if block_given?
     r.body
   end
