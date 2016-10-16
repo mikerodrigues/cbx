@@ -2,7 +2,7 @@ This is a fork of a project originally authored by Daniel Silver
 (https://github.com/dan-silver/coinbase_exchange)
 
 This gem isn't officially endorsed, affiliated, or supported by Coinbase
-Exchange or Global Digital Asset Exchange (GDAX)..
+Exchange or Global Digital Asset Exchange (GDAX).
 
 # Ruby wrapper for the GDAX (formerly Coinbase Exchange) API
 
