@@ -2,8 +2,8 @@ Gem::Specification.new do |s|
   s.name        = 'cbx'
   s.version     = '0.1.2'
   s.date        = Date.today.to_s
-  s.summary     = 'Ruby wrapper for the Coinbase Exchange API'
-  s.description = 'A complete interface to the Coinbase Exchange trading API.'
+  s.summary     = 'Ruby wrapper for the GDAX (Coinbase Exchange) API'
+  s.description = 'A complete interface to the GDAX (Coinbase Exchange) API.'
   s.authors     = ['Michael Rodrigues', 'Dan Silver']
   s.email       = ['mikebrodrigues@gmail.com', 'dannysilver3@gmail.com']
   s.files       = Dir.glob('{bin,config,lib,test,doc}/**/*') + ['cbx.gemspec']
