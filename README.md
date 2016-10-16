@@ -1,19 +1,17 @@
-## Coinbase released an official Exchange API client. Unless they end up completely abandoning it, I'll likely spend more time using it than this library.
-
 This is a fork of a project originally authored by Daniel Silver
 (https://github.com/dan-silver/coinbase_exchange)
 
 This gem isn't officially endorsed, affiliated, or supported by Coinbase
-Exchange.
+Exchange or Global Digital Asset Exchange (GDAX)..
 
-# Ruby wrapper for the Coinbase Exchange API
+# Ruby wrapper for the GDAX (formerly Coinbase Exchange) API
 
 The library wraps the http request and message signing and provides.
 
 The fork adds convenience methods to access all of the API's functionality, and
 allows for unauthenticated access to Market Data and the WebSocket feed.
 
-Create an account at https://exchange.coinbase.com to get started.
+Create an account at https://www.gdax.com to get started.
 
 ## Installation
 

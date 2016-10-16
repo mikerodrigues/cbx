@@ -2,7 +2,7 @@ class CBX
   # Provides an interface to the Coinbase Exchange WebSocket feed.
   #
   class Feed
-    API_URL = 'wss://ws-feed.exchange.coinbase.com'
+    API_URL = 'wss://ws-feed.gdax.com'
     SUBSCRIPTION_REQUEST = { 'type' => 'subscribe', 'product_id' => 'BTC-USD' }
     def initialize(on_message, on_close = nil, on_error = nil)
       ws = WebSocket::Client::Simple.connect API_URL
