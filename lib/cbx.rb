@@ -15,7 +15,7 @@ require 'cbx/version'
 class CBX
   include MarketData
 
-  API_URL = 'https://api.exchange.coinbase.com/'
+  API_URL = 'https://api.gdax.com/'
 
   def initialize(key = nil, secret = nil, passphrase = nil)
     if key && secret && passphrase
